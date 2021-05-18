@@ -103,7 +103,7 @@ for j=1:Num
     B_Td = 1/a*(1-exp(-a*delta)); %B(T-Delta, T) = 1/a (1-exp(-a*Delta) in Hull-White Model
     %p(T-Delta,T) calculated by using term structure described in the Bjork book
     p_TdT = p_0T/p_0Td*exp(B_Td*f_Td-sigma_r^2/(4*a)*B_Td^2*(1-exp(-2*a*(T-delta)))-B_Td*r_Td); 
-    L = 1-p_TdT/(delta*p_TdT); %Libor rate calculation
+    L = (1-p_TdT)/(delta*p_TdT); %Libor rate calculation
     payoff = max(0,(equity(T*workday+1)/S0-k)*(k1-L)); %Payoff
     discount = exp(-(sum(r)-r(1))*dt); %discount factor
     res = res+payoff*discount; %sum up all the payoff*discount factor for expectation
